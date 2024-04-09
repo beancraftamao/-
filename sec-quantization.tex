@@ -1,0 +1,107 @@
+% -*- coding: utf-8 -*-
+% !TEX program = xelatex
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\usepackage{amsmath,xeCJK,hyperref,xcolor,comment,indentfirst,titlesec}
+\usepackage{geometry}
+\setCJKmainfont{KaiTi}
+\setmainfont{Times New Roman}
+\titleformat{\chapter}{\centering\bfseries\zihao{2}}{第\,\thechapter\,章}{1em}{}
+\titleformat{\section}{\bfseries\zihao{4}}{\thesection}{1em}{}
+
+\geometry{
+    a4paper,
+    left=3cm,
+    right=3cm,
+    top=3cm,
+    bottom=1cm,
+    headsep=1cm,
+    footskip=1cm,
+}
+\begin{document}
+
+\title{重生之每天坚持学不会从入学到入土\\组内自用手搓讲义}
+\author{阿毛}
+\date{\today}
+\maketitle
+
+\chapter{二次量子化}
+二次量子化的形式可以从高量角度理解，也可以直接从场论出发，由于未学习场论，本章采用高量的语言。
+
+\section{速通本章}
+波函数语言在描述量子体系的时候是自洽的，但是在多体系统中，通常会出现
+$\sum_N \int\Psi_N^{\dag}(r)\Psi_N(r) d(\vec{r})$的情况，共有$N!\times N!$项，计算量巨大。相较之下，
+粒子数表示的表达非常简洁，且也能在多体系统中描述体系的变化（粒子的产生与湮灭）。
+无论是费米子系统还是玻色子系统，都可以从波函数表示转化为粒子数表示
+，这就是所谓的二次(历史上时间的第二次)量子化。
+
+单体力学量算符$\hat{F}$（例如动量）在粒子数表象下可表示为：
+\begin{eqnarray*}
+    \hat{F}=\sum_{\alpha,\beta}f_{\alpha\beta}\hat{a}^{\dag}_\alpha\hat{a}_\beta,
+\end{eqnarray*}
+其中
+\begin{eqnarray*}
+    f_{\alpha\beta}=\langle\psi_\alpha|\hat{f}|\psi_\beta\rangle=\int dq \psi^{*}_\alpha(q)\hat{f}(q)\psi_\beta(q),
+\end{eqnarray*}
+而两体力学量算符
+\begin{align}
+    \hat{G}=&\sum_{a<b}\hat{g}(a,b)
+\end{align}
+例如:
+\begin{align}
+    V(q_1,q_2,q_N)=&\sum_{i<j}\frac{e^2}{|\mathbf{r}_i-\mathbf{r}_j|}=
+    \frac{1}{2}\sum_{i,j}\frac{e^2}{|\mathbf{r}_i-\mathbf{r}_j|}
+\end{align}
+在粒子数表象中可以写为如下形式:
+\begin{align}
+    \hat{G}=\frac{1}{2}\sum_{\alpha'\beta'}\sum_{\alpha\beta}
+    g_{\alpha'\beta',\alpha\beta}\hat{a}^{\dag}_{\alpha'}\hat{\alpha}^{\dag}_{\beta'}\hat{a}_\beta\hat{a}_\alpha
+\end{align}
+其中
+\begin{eqnarray}
+    g_{\alpha'\beta',\alpha\beta}=\int dq_1 dq_2 \varphi^*_{\alpha'}(q_1)\varphi^*_(q_2)\hat{g}(q_1,q_2)\varphi_\alpha(q_1)\varphi_\beta(q_2).
+\end{eqnarray}
+波函数$\Psi$则可以表示为粒子数的态$|n\rangle$，其中n是某个态的粒子数。
+关于产生湮灭算符的作用，后面会提到，需要注意力学量作用在态上时，需要遵循火车到站的规则（老田的课里有），即算符作用后，存在一个置换的关系。
+
+
+\section{数学准备}
+首先明确本讲义目标：快速上手理解课题组工作中涉及的概念，如需要完整学习，详情参考B站田光善老师高等量子力学课程。
+\href{https://www.bilibili.com/video/BV1qk4y1173i?p=1&vd_source=cd4587e54f9d57093a8dbe5712bb9c5e}
+{\textcolor{blue}{网页链接}}
+
+\subsection{置换群}
+群论在物理学中的应用很广泛，但此处并不深入讨论，只需要把群操作视为一种算符，以方便理解。如群的定义，群的性质等，此处不说明。
+
+置换定义如下:
+\begin{align}
+    \hat{P}=\left(\begin{matrix}
+        1 & 2 & 3 & \dots & N\\
+        P(1) & P(2) & P(3)&\dots&P(N)
+    \end{matrix}\right)
+\end{align}
+举例
+\begin{align}
+    \hat{P}=\left(\begin{matrix}
+        1&2&3&4&5\\
+        4&1&2&5&3
+    \end{matrix}\right)
+\end{align}
+可以表示为$P(1)=4,P(2)=1$。
+
+对换(特殊的置换)：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
