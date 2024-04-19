@@ -6,7 +6,8 @@
 \setCJKmainfont{KaiTi}
 \setmainfont{Times New Roman}
 \titleformat{\chapter}{\centering\bfseries\zihao{2}}{第\,\thechapter\,章}{1em}{}
-\titleformat{\section}{\bfseries\zihao{4}}{\thesection}{1em}{}
+\titleformat{\section}{\bfseries\zihao{3}}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries\zihao{4}}{\thesubsection}{1em}{}
 
 \geometry{
     a4paper,
@@ -87,6 +88,7 @@ $\sum_N \int\Psi_N^{\dag}(r)\Psi_N(r) d(\vec{r})$的情况，共有$N!\times N!$
     \end{matrix}\right)
 \end{align}
 可以表示为$P(1)=4,P(2)=1$。
+
 对换(特殊的置换)：
 \begin{align}
     \hat{P}=\left(\begin{matrix}
@@ -94,18 +96,377 @@ $\sum_N \int\Psi_N^{\dag}(r)\Psi_N(r) d(\vec{r})$的情况，共有$N!\times N!$
         1&2&\dots&k&\dots&j&\dots&N
     \end{matrix}\right)
 \end{align}
-我们将这种特殊的置换记作(j,k)，当k=j+1时，对换(j,j + 1）也被称为相邻对换或轮换。
+我们将这种特殊的置换记作(j,k)，当k=j+1时，对换(j,j + 1)也被称为相邻对换或轮换。
 
+全同粒子波函数，可以写为$\varPsi_{\left(k_1,k_2,k_3,\dots,k_N\right)}(q_1,q_2,q_3,\dots,q_N)$
+其中$k_N$为允许粒子存在的态，$q_N$为粒子的自由度。
 
+\subsection{全同粒子波函数-以费米系统为例}
+在全同粒子体系中，以两粒子体系为例，如果假设相互作用势为0，其哈密顿量可以写为如下形式
+\begin{eqnarray}
+    \hat{H}=\frac{\hat{p}_1^2}{2m}\otimes \hat{I}_2+\hat{I}_1\otimes\frac{\hat{P}_2^2}{2m}
+\end{eqnarray}
+对于一个单粒子，$\psi_k(\vec{r},s)=\frac{1}{\sqrt{V}}e^{i\vec{k} \cdot \vec{r}}\varphi(s)$
+如果把自由度s理解为自旋（分别取两个态自旋向上，向下），双粒子体系可以写为如下形式
+\begin{eqnarray}
+    \psi_{k_1,k_2}(\vec{r}_1,\vec{r}_2)=\frac{1}{\sqrt{V}}e^{i\vec{k_1} \cdot \vec{r}_1}
+    \left(\begin{matrix}
+        1\\0
+    \end{matrix}\right)
+    \otimes\frac{1}{\sqrt{V}}e^{i\vec{k}_2\cdot\vec{r}_2}
+    \left(\begin{matrix}
+        0\\1
+    \end{matrix}\right)
+\end{eqnarray}
+但此时波函数并没有满足费米统计规律，于是需要构造(凑)费米波函数：
+\begin{align}
+    \varPsi^A_{\vec{k}_1,\vec{k}_2}(\vec{r_1},\vec{r_2})=\psi_{k_1,k_2}(\vec{r}_1,\vec{r}_2)-\psi_{k_2,k_1}(\vec{r}_1,\vec{r}_2)
+\end{align}
+此时才满足
+\begin{eqnarray}
+    \varPsi^A_{\vec{k}_1,\vec{k}_2}(\vec{r_1},\vec{r_2})=-\varPsi^A_{\vec{k}_1,\vec{k}_2}(\vec{r_2},\vec{r_1})
+\end{eqnarray}
+即交换粒子位置，波函数多出一个负号。
 
+初量的知识可知，全同粒子体系波函数$\psi(q_1,q_2,\cdots,q_N)=\sum_l C_l \psi_l(q_1,q_2,\cdots,q_N)$，
+$\psi_l$满足
 
+（1）正交归一
 
+（2）体现体系由N个单粒子组成
 
+（3）满足全同粒子体系的统计规律
 
+对于费米子，可以定义
+\begin{eqnarray}
+    &&\psi_l(q_1,\cdots,q_i,\cdots,q_j,\cdots,q_N)\\\nonumber
+    &=&\psi_{k_1,k_2,\cdots\cdots,k_N}(q_1,\cdots,q_i,\cdots,q_j,\cdots,q_N)\\\nonumber
+    &=&D\sum_P (-1)^P \hat{P}\left(\varphi_{k_1}(q_1)\varphi_{k_2}q_2\cdots\cdots\varphi_{k_N}(q_N)\right)\\\nonumber
+    &=&D\sum_P (-1)^P \varphi_{k_1}\left(q_{P(1)}\right)\cdots\cdots\varphi_{k_N}\left(q_{P(N)}\right) 
+\end{eqnarray}
+其中D为归一化系数，可以由排列组合得到，假设存在N个态，每个态存在$n_{k_N}$个粒子。
+（注：能自己推可以尝试理解）
 
+在费米体系中
+\begin{eqnarray}
+    \tilde{D}=\sqrt{\frac{n_{k_1}!n_{k_2}!\cdots\cdots n_{k_N}!}{N!}}=\frac{1}{\sqrt{N!}} 
+\end{eqnarray}
+且在上述波函数中，$k_1\neq k_2\neq \cdots \neq k_N$。（完整证明见高量讲义1-P10）
 
+对该费米体系波函数作用一个对换
+\begin{eqnarray}
+    &&(i,j)\psi_{k_1,\cdots,k_N}(q_1,\cdots\cdots,q_N)\\\nonumber
+    &=&\frac{1}{\sqrt{N!}}\sum_{\hat{P}}(-1)^{\hat{P}}(i,j)\hat{P}(\varphi_{k_1}(q_1)\cdots\cdots\varphi_{k_N}(q_N))\\\nonumber
+    &=&\frac{1}{\sqrt{N!}}\sum_{\hat{P}}(-1)^{\hat{P}+1}(-1)[(i,j)\hat{P}](\varphi_{k_1}(q_1)\cdots\cdots\varphi_{k_N}(q_N))
+\end{eqnarray}
+令$(i,j)\hat{P}=\hat{P}'$,对换后$\hat{P}$和$\hat{P}'$必定具有不同的奇偶性。因此$(-1)^{\hat{P}'}=(-1)^{\hat{P+1}}$，上式可转化为
+\begin{eqnarray}
+    &&\frac{1}{\sqrt{N!}}\sum_{\hat{P}'}(-1)^{\hat{P}'}(-1)\hat{P'}(\varphi_{k_1}(q_1)\cdots\cdots\varphi_{k_N}(q_N))\\\nonumber
+    &=&-\psi_{k_1,\cdots,k_N}(q_1,\cdots\cdots,q_N)
+\end{eqnarray}
+即多粒子体系，对换后体系的奇偶性改变，与两粒子一样成立。
+对于这样的波函数，我们称其满足Dirac-Fermi统计规律。
 
+而满足Dirac-Fermi统计规律的多体波函数可以写为如下形式：
+\begin{align}
+    \psi_{k_1,\cdots,k_N}(q_1,\cdots\cdots,q_N)=\frac{1}{\sqrt{N!}}\left|\begin{matrix}
+        \phi_{k_1}(q_1)&\phi_{k_2}(q_1)&\cdots &\phi_{k_N}(q_1)\\
+        \phi_{k_1}(q_2)&\phi_{k_2}(q_2)&\cdots &\phi_{k_N}(q_2)\\
+        \vdots &\vdots&\vdots&\vdots\\
+        \phi_{k_1}(q_N)&\phi_{k_2}(q_N)&\cdots &\phi_{k_N}(q_N)
+    \end{matrix}\right|
+\end{align}
+该表达式被称为Slater行列式。
 
+\section{粒子数表象}
+\subsection{态指标的转化}
+我们注意到，在任意基向量$\psi_{k_1,\cdots,k_N}(q_1,\cdots\cdots,q_N)$中，最重要的是单粒子态$k_1,\cdots,k_N$
+出现的次数，于是我们引入记号
+\begin{align}
+    |n_{k_1},n_{k_2},\cdots,n_{k_N}\rangle
+\end{align}
+来表示上述的态。
+注意对于玻色子情况，$|n_{k_1},n_{k_2}\rangle=|n_{k_2},n_{k_1}\rangle$，而费米子则不是。
+即，波函数语言到粒子数语言，是一一对应的，而粒子数语言倒回去却不是。
+
+为了解决该问题，我们引入真空态$|vac\rangle\equiv|0\rangle$
+且要求真空态$\langle 0|0\rangle=1$，$\langle 0|n_k=1\rangle=0$,即与坐标表象一致，满足正交归一。
+
+（1）定义产生算符$\hat{a}_k^{\dag}|0\rangle=|n_k=1\rangle$，同时要求$\langle n_k=1|n_k=1\rangle=1$。
+
+（2）定义湮灭算符$\hat{a}_k|0\rangle=0 , \hat{a}_k|n_k=1\rangle=|0\rangle$。
+
+如果满足恒等式
+\begin{eqnarray}
+    \langle\psi_1|\hat{A}|\psi_2\rangle=\langle\hat{A}^{\dag}\psi_1|\psi_2\rangle
+\end{eqnarray}
+则我们认为算符$\hat{A},\hat{A}^{\dag}$是共轭的，可以证明，上述产生湮灭算符也是共轭的。
+
+对于费米子体系，我们用$\hat{C}^{\dag}_k$和$\hat{C}_k$来表示费米子的产生湮灭。
+
+（1）同一个单粒子态上，不能有超过一个费米子
+，即：
+\begin{eqnarray}
+    \hat{C}^{\dag}_k\hat{C}^{\dag}_k|0\rangle=\hat{C}^{\dag}_k|n_k=1\rangle=0
+\end{eqnarray}
+因此我们要求
+\begin{eqnarray}
+    \hat{C}^{\dag}_k\hat{C}^{\dag}_k=0
+\end{eqnarray}
+同时因为算符是共轭的，因此$(\hat{C}^{\dag}_k\hat{C}^{\dag}_k)^\dag =\hat{C}_k\hat{C}_k=0$
+
+(2)导出对易关系
+
+定义
+\begin{eqnarray}
+    \left\{\hat{C}_k,\hat{C}_k^\dag \right\}=\hat{C}_k\hat{C}_k^\dag+\hat{C}_k^\dag\hat{C}_k
+\end{eqnarray}
+将其作用在$|0\rangle$上
+\begin{eqnarray}
+    \hat{C}_k^\dag\hat{C}_k|0\rangle+\hat{C}_k\hat{C}_k^\dag |0\rangle=\hat{I}|0\rangle
+\end{eqnarray}
+将其作用在$|n_k=1\rangle$上
+\begin{eqnarray}
+    \hat{C}_k^\dag\hat{C}_k|n_k=1\rangle+\hat{C}_k\hat{C}_k^\dag |n_k=1\rangle=\hat{I}|n_k=1\rangle
+\end{eqnarray}
+即该对易算子作用在任意态上，其本征值都是单位矩阵，故此其对易关系等于单位矩阵
+\begin{eqnarray}
+    \left\{\hat{C}_k,\hat{C}_k^\dag \right\}=\hat{I}
+\end{eqnarray}
+
+(3)不同算符的对易关系
+
+考虑算符$\hat{C}_k^\dag\hat{C}_{k'}^\dag+\hat{C}_{k'}^\dag\hat{C}_k^\dag$，定义
+\begin{eqnarray}
+    \hat{C}_k^\dag\hat{C}_{k'}^\dag|0\rangle=|n_k=1,n_{k'}=1\rangle
+\end{eqnarray}
+因此有
+\begin{eqnarray}
+    \hat{C}_k^\dag\hat{C}_{k'}^\dag|0\rangle+\hat{C}_{k'}^\dag\hat{C}_{k}^\dag|0\rangle&=&|n_k=1,n_{k'}=1\rangle+|n_{k'}=1,n_k=1\rangle\\\nonumber
+    &=&|n_k=1,n_{k'}=1\rangle-|n_k=1,n_{k'}=1\rangle\\\nonumber
+    &=&0
+\end{eqnarray}
+即
+\begin{eqnarray}
+    \hat{C}_k^\dag\hat{C}_{k'}^\dag+\hat{C}_{k'}^\dag\hat{C}_k^\dag=\left\{\hat{C}_k^\dag,\hat{C}_{k'}^\dag\right\}=0
+\end{eqnarray}
+同样我们可以得到$\left\{\hat{C}_k^\dag,\hat{C}_{k'}\right\}=0$
+\subsection{单体算符}
+对于一个多体量子体系，力学量可以写成如下形式
+\begin{eqnarray}
+    \hat{F}=\sum_{i=1}^{N}\hat{f}(q_i)
+\end{eqnarray}
+对于可以如上展开的算符，当我们对其作内积，存在等式
+\begin{eqnarray}
+    (\psi_{n_{k_1}\cdots n_{k_N}},\hat{F}\psi_{n'_{k_1\cdots n_{k_N}}})=N(\psi_{n_{k_1}\cdots n_{k_N}},\hat{f}(q_1)\psi_{n'_{k_1\cdots n_{k_N}}})
+\end{eqnarray}
+其证明过程见田光善讲义1-p18
+
+由于$\hat{F}$是单体算符，初态和末态最多相差一个单粒子态，否则矩阵元为零，上述矩阵元可以写为如下形式
+\begin{eqnarray}
+    &&N \frac{1}{N!}\sum_{\hat{P}}\sum_{\hat{P}'}(-1)^{\hat{P}} (-1)^{\hat{P}'}\int dq_1\cdots dq_N \\\nonumber
+    &\times& \hat{P}(\cdots\varphi^*_{k_j}(q_j)\cdots)\hat{f}(q_1)\hat{P'}(\cdots\varphi_{k_k}(q_k)\cdots)
+\end{eqnarray}
+其中非零项有
+\begin{eqnarray}
+    &&\int dq_1\cdots dq_N \varphi^*_{k_1}(q_\alpha)\cdots\varphi^*_{k_j}(q_1)\cdots\boxed{\varphi^*_{k_k}}\cdots \varphi^*_{k_N}(q_\lambda)\hat{f}(q_1)\\\nonumber
+    &\times&\varphi_{k_1}(q_\alpha)\cdots\boxed{\varphi_{k_j}}\cdots\varphi_{k_k}(q_1)\cdots\varphi_{k_N}(q_\lambda)\\\nonumber
+    &=&\int dq_1\varphi^*_{k_j}(q_1)\hat{f}(q_1)\varphi_{k_k}(q_1)\equiv f_{jk}
+\end{eqnarray}
+此时，还需要确定置换P与P'，我们有：
+\begin{eqnarray}
+    (-1)^{\hat{P}'}=(-1)^{\hat{P}}(-1)^{\sum_{i=j+1}^{k-1}}
+\end{eqnarray}
+证明过程见讲义1-p29
+
+在固定j,k之后（j的初态没有粒子，k的初态有粒子，依然剩余N-1个粒子）体系剩余自由度可以进行配对的全排列，即$(N-1)!$
+因此最后有
+\begin{eqnarray}
+    &&\left(\psi_{\cdots ,1_j,\cdots,0_k,\cdots},\hat{F}\psi_{\cdots,0_j,\cdots,1_k,\cdots}\right)\\\nonumber
+    &=&N \frac{1}{N!}(-1)^{\sum_{i=j+1}^{k-1}n_i}f_{jk}=(-1)^{\sum_{i=j+1}^{k-1}}f_{jk}
+\end{eqnarray}
+在粒子数表象中
+\begin{eqnarray}
+    &&\langle\cdots,n_k=0,\cdots,n_j=1,\cdots|\hat{F}|\cdots,n_j=1,\cdots,n_k=1,\cdots\rangle\\\nonumber
+    &=&\sum_{\alpha\beta}f_{\alpha\beta}\langle\cdots,n_k=0,\cdots,n_j=1,\cdots|\hat{C}^\dag_\alpha\underbrace{\hat{C}_\beta |\cdots,n_j=1,\cdots,n_k=1},\cdots\rangle\\\nonumber
+    &=&\sum_{\alpha\beta}f_{\alpha\beta}(-1)^{\sum_{i=1}^{k-1}n_i}\delta_{\beta k}\langle\cdots,n_k=0,\cdots,n_j=1,\cdots|\underbrace{\hat{C}^\dag_\alpha|\cdots,n_j=1},\cdots,n_k=0,\cdots\rangle\\\nonumber
+    &=&\sum_{\alpha\beta}f_{\alpha\beta}(-1)^{\sum_{i=1}^{k-1}n_i}\delta_{\beta k}(-1)^{\sum_{i=1}^{j-1}n_i}\delta_{\alpha j}\\\nonumber
+    &=&f_{jk}(-1)^{\sum_{i=j+1}^{k-1}n_i}
+\end{eqnarray}
+两种语言给出的结果一致。
+
+\subsection{两体算符}
+当讨论粒子的相互作用势时，我们会遇到两体算符
+\begin{eqnarray}
+    \hat{G}=\sum_{a<b}\hat{g}(a,b)
+\end{eqnarray}
+我们首先考虑对角元的情况
+\begin{eqnarray}
+    &&(\psi_{\cdots 0_i\cdots 0_j \cdots 1_k \cdots 1_l,\cdots},\hat{G}\psi_{\cdots 1_i\cdots 1_j \cdots 0_k \cdots 0_l,\cdots})\\\nonumber
+    &=&C_N^2(\psi_{\cdots 0_i\cdots 0_j \cdots 1_k \cdots 1_l,\cdots},\hat{g}(q_1,q_2)\psi_{\cdots 1_i\cdots 1_j \cdots 0_k \cdots 0_l,\cdots})\\\nonumber
+    &=&\frac{N(N-1)}{2}\frac{1}{N!}\sum_P\sum_{P'}(-1)^{\hat{P}}(-1)^{\hat{P}'}\int dq_1 \cdots dq_N\\\nonumber
+    &\times&\hat{P}\left(\varphi^*_{k_1}(q_1)\cdots\varphi^*_{k_N}(q_N)\right)
+    g(q_1,q_2)\hat{P'}\left(\varphi_{k_1}(q_1)\cdots\varphi_{k_N}(q_N)\right)
+\end{eqnarray}
+非零的项为
+\begin{eqnarray}
+    &&\int dq_1\cdots dq_N \varphi^*_{k_1}(q_\alpha)\cdots\varphi^*_{k_k}(q_1)\cdots\varphi^*_{k_s}(q_2)\cdots\varphi^*_{k_N}(q_\lambda)\\\nonumber
+    &\times& g(q_1,q_2)\varphi_{k_1}(q_\alpha)\cdots\varphi_{k_k}(q_1)\cdots\varphi_{k_s}(q_2)\cdots\varphi_{k_N}(q_\lambda)
+\end{eqnarray}
+或者
+\begin{eqnarray}
+    &&\int dq_1\cdots dq_N \varphi^*_{k_1}(q_\alpha)\cdots\varphi^*_{k_k}(q_2)\cdots\varphi^*_{k_s}(q_1)\cdots\varphi^*_{k_N}(q_\lambda)\\\nonumber
+    &\times& g(q_1,q_2)\varphi_{k_1}(q_\alpha)\cdots\varphi_{k_k}(q_1)\cdots\varphi_{k_s}(q_2)\cdots\varphi_{k_N}(q_\lambda)
+\end{eqnarray}
+前者记为
+\begin{eqnarray}
+    g_{ks,ks}\equiv\int dq_1dq_2\varphi^*_{k_k}(q_1)\varphi^*_{k_s}(q_2)g(q_1,q_2)\varphi_{k_k}(q_1)\varphi_{k_s}(q_2)
+\end{eqnarray}
+后者以同样形式可以记为$g_{ks,sk}=g_{sk,ks}$,前者被称为直接积分，后者被称为交换积分。
+对于前者，因为轮换的次数完全相同，即$\hat{P}=\hat{P}'$，后者轮换次数多一个$-1$，由此可得
+\begin{eqnarray}
+    \hat{G}&=&\frac{N(N-1)}{2}\frac{1}{N!}\sum_{g\neq 0}2[g_{ks,ks}-g_{sk,ks}]n_{k_k}\cdot n_{s_k}\\\nonumber
+    &=&\frac{N(N-1)}{2}\frac{1}{N!}(N-2)! 2[g_{ks,ks}-g_{sk,ks}]n_{k_k}\cdot n_{s_k}
+\end{eqnarray}
+上式中若态$\varphi_{k_k}$和$\varphi_{k_s}$不出现在态$\varphi_{n_{k_1},n_{k_2}\cdots}$时，该项贡献为0，此时
+\begin{eqnarray}
+    \hat{G}=\sum_{k,s}n_{k_k}n_{k_s}(g_{ks,ks}-g_{ks,sk})
+\end{eqnarray}
+
+在粒子数表象中进行验证
+\begin{eqnarray}
+    &&\langle\cdots,n_{k_2},n_{k_1}|\hat{G}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+    &=&\frac{1}{2}\sum_{\alpha\beta}\sum_{\alpha'\beta'}g_{\alpha'\beta',\alpha\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\alpha'}\hat{C}^{\dag}_{\beta'}\hat{C}_{\beta}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+    &=&\frac{1}{2}\sum_{\alpha'\neq\beta'}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\alpha'}\hat{C}^{\dag}_{\beta'}\hat{C}_{\beta}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\delta_{\beta\beta'}\delta_{\alpha\alpha'}\\\nonumber
+    &&+\frac{1}{2}\sum_{\alpha'\neq\beta'}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\alpha'}\hat{C}^{\dag}_{\beta'}\hat{C}_{\beta}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\delta_{\alpha\beta'}\delta_{\beta\alpha'}\\\nonumber
+    &=&\frac{1}{2}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\alpha}\hat{C}^{\dag}_{\beta}\hat{C}_{\beta}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+    &&+\frac{1}{2}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\beta}\hat{C}^{\dag}_{\alpha}\hat{C}_{\beta}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+    &=&\frac{1}{2}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\alpha}\hat{C}_{\alpha}\hat{C}^{\dag}_{\beta}\hat{C}_{\beta}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+    &&\boxed{-}\frac{1}{2}\sum_{\alpha\neq\beta}\langle\cdots,n_{k_2},n_{k_1}|\hat{C}^{\dag}_{\beta}\hat{C}_{\beta}\hat{C}^{\dag}_{\alpha}\hat{C}_{\alpha}|n_{k_1},n_{k_2},\cdots\rangle\\\nonumber
+\end{eqnarray}
+到这一步，态指标内的算符可以转为粒子数算符$\hat{N}_\alpha\hat{N}_\beta$，于是我们有
+\begin{eqnarray}
+    &&\frac{1}{2}\sum_{\alpha\neq\beta}(g_{\alpha\beta,\alpha\beta}-g_{\alpha\beta,\beta\alpha})n_\alpha n_\beta\\\nonumber
+    &=&\sum_{(\alpha,\beta)}(g_{\alpha\beta,\alpha\beta}-g_{\alpha\beta,\beta\alpha})n_\alpha n_\beta
+\end{eqnarray}
+与波函数语言结果一致
+
+在两体算符中还存在如下非对角元
+\begin{eqnarray}
+    &&(\psi_{\cdots 0_i\cdots 0_j \cdots 1_k \cdots 1_l,\cdots},\hat{G}\psi_{\cdots 1_i\cdots 1_j \cdots 0_k \cdots 0_l,\cdots})\\\nonumber
+    &=&C_N^2(\psi_{\cdots 0_i\cdots 0_j \cdots 1_k \cdots 1_l,\cdots},\hat{g}(q_1,q_2)\psi_{\cdots 1_i\cdots 1_j \cdots 0_k \cdots 0_l,\cdots})\\\nonumber
+    &=&\frac{N(N-1)}{2}\frac{1}{N!}\sum_P\sum_{P'}(-1)^{\hat{P}}(-1)^{\hat{P}'}\int dq_1 \cdots dq_N\\\nonumber
+    &\times&\hat{P}\left(\varphi^*_{k_1}(q_1)\cdots \boxed{\varphi^*_{k_i}} \cdots \boxed{\varphi^*_{k_j}}\cdots\varphi^*_{k_k}(q_k)\cdots \varphi^*_{k_l}(q_l)\cdots\varphi^*_{k_N}(q_N)\right)\\\nonumber
+    &\times&g(q_1,q_2)\hat{P'}\left(\varphi_{k_1}(q_1)\cdots \varphi_{k_i}(q_i) \cdots \varphi_{k_j}(q_j)\cdots \boxed{\varphi_{k_k}}\cdots \boxed{\varphi_{k_l}}\cdots \varphi_{k_N}(q_N)\right)
+\end{eqnarray}
+非对角元的计算量较大，这里不详细证明，可以参考田光善讲义1-P32，同样的，非对角元形式依然能与粒子数语言一一对应。
+
+\chapter{紧束缚模型}
+紧束缚近似是研究固体中电子结构常用的理论模型，该模型假设在材料中大部分的电子都紧紧的束缚在原子核周围，只有少部分的
+电荷可以自由的在格点之间跳跃，紧束缚这个名词也是由此而来。在该近似图象下，晶格自身的势能被视为一个场，我们可以用
+化学势$\mu$以及场算符来表示，而电子之间的跃迁则用跳跃项来描述，即通常情况下，我们可以将总的哈密顿量写为这两部分
+的和，下面给出式子：
+\begin{eqnarray}
+	\mathbf{H}=-\mathbf{t_{ij}}\sum_{\langle\mathbf{ij}\rangle,\sigma}(\mathbf{C^{\dag}_{i\sigma}C_{j\sigma}+h.c.})
+	+\mu\sum_{i,\sigma} C^{\dag}_{i\sigma}C_{i\sigma},
+\end{eqnarray}
+其中$C^{\dag}_{i\sigma}$表示在格点i的位置产生一个自旋为$\sigma$的电子，$C_{j\sigma}$表示在格点j的位置湮灭一个
+自旋为$\sigma$的电子，这在计算中可以等价为j格点上的电子跳跃到了i格点，$\mathbf{t}_{ij}$表示电子发生跳跃的强度，
+该强度会受到化学键或者CDW流的强度的影响，需要注意的是，一般在计算中，考虑最近邻的跳跃项就能充分描述该体系的物理性质，
+如果次近邻的子晶格存在较大的干扰或者散射，那么需要额外加上次近邻的跳跃项来完善模型。
+第二项中，$C^{\dag}_{i\sigma}C_{i\sigma}$又可以看作是粒子数
+算符$\hat{N}_{\sigma}=C^{\dag}_{i\sigma}C_{i\sigma}$，即分别对自旋和粒子数求和，得到总的势能。
+\section{简单晶格中的跳跃项}
+
+\subsection{最近邻项}
+
+\subsection{次近邻项}
+
+\section{蜂窝晶格中的跳跃项}
+
+\section{kagome晶格中的跳跃项}
+
+\chapter{BCS超导哈密顿量}
+\section{推导过程}
+\subsection{玻戈留波夫变换与BdG方程}
+	BdG方程中的B，指的就是玻戈留波夫(Bogoliubov)，dG则指的是de Genns。该方程用于描述费米子体系下的超导系统,并通过正则
+	变换，将非对角元的有效哈密顿量对角化。
+	以超导BCS哈密顿量为例:
+	\begin{eqnarray}
+		\mathbf{H}=\sum_{k}\varepsilon_{k}(C^{\dag}_{k \uparrow} C_{k \uparrow}+C^{\dag}_{-k \downarrow} C_{-k \downarrow})-
+		\sum_{k}\Delta(C^{\dag}_{k \uparrow}C^{\dag}_{-k \downarrow}+C_{-k \downarrow}C_{k \uparrow})+\frac{\Delta^2}{V_0},
+		\label{eqn:2-4}	
+	\end{eqnarray}
+	做Bogoliubov变换:
+	\begin{align}
+		C_{k \uparrow} =& u_k \alpha_{k \uparrow}+v_k \alpha^{\dag}_{-k \downarrow} \nonumber\\
+		C^{\dagger}_{k \uparrow} =& u_k \alpha^{\dag}_{k \uparrow}+ v_k \alpha_{-k \downarrow}\nonumber\\
+		C_{-k \downarrow} =& u_k \alpha_{-k \downarrow}-v_k \alpha^{\dag}_{k \uparrow}\nonumber\\ 
+		C^{\dagger}_{-k \downarrow} =& u_k \alpha^{\dag}_{-k \downarrow}+ v_k \alpha_{k \uparrow} ,
+	\label{eqn:2-5}
+	\end{align}
+	将式\ref{eqn:2-5}代入式\ref{eqn:2-4}，展开后化简可得
+	\begin{align}
+		\mathbf{H}=&\sum_{k}\left\{
+			\left[\varepsilon _k\left(u_k^2-v_k^2\right)+2\Delta u_k v_k\right]\alpha^{\dag}_{k \uparrow}\alpha_{k \uparrow}
+			+\left[\varepsilon_k\left(u_k^2-v_k^2\right)+2\Delta u_k v_K\right]\alpha^{\dag}_{-k \downarrow}\alpha_{k \uparrow}
+			\right\}\nonumber\\
+			\quad&+\sum_{k}\left\{
+				\left[2\varepsilon_k u_k v_k - \Delta \left(u_k^2-v_k^2\right)\right]\alpha^{\dag}_{k \uparrow}\alpha_{-k \downarrow}
+				+\left[2\varepsilon_k u_k v_k- \Delta \left(u_k^2-v_k^2\right)\right]\alpha_{-k \downarrow}
+			\right\}\nonumber\\
+			\quad&+2\sum_k \varepsilon_k v_k^2-2\Delta \sum_k u_k v_k+\frac{\Delta^2}{V_0},
+	\end{align}
+	这里要求非对角项的系数为零，即$2\varepsilon_k u_k v_k-\Delta(u_k^2-v_k^2)=0$。又因为费米系统中算符存在反对易关系，如下所示：
+	\begin{align}
+		\left\{a_{k \uparrow},a^{\dag}_{k^{'} \uparrow}\right\}=&u_k u_{k^{'}} \left\{C_{k\uparrow},C^{\dag}_{k^{'}\uparrow}\right\}
+		+v_k v_{k^{'}}\left\{C_{-k\downarrow}^{\dag},C_{-k^{'}\downarrow}\right\} \nonumber\\
+		=&\delta_{kk^{'}} \left(u_k^2+v_k^2\right) \nonumber\\
+		=&\delta_{kk^{'}},
+	\end{align}
+	所以要求$u_k^2+v_k^2=1$,根据这两个条件可以解出:
+	\begin{eqnarray}
+		u_k^2=\frac{1}{2}\left(1+\frac{\varepsilon_k}{E_k}\right),\quad v_k^2=\frac{1}{2}\left(1-\frac{\varepsilon_k}{E_k}\right),
+	\end{eqnarray}
+	其中$E_k=\sqrt{\varepsilon_k^2+\Delta^2}$，最终可以解得哈密顿量：
+	\begin{eqnarray}
+		\mathbf{H}=\sum_{k}E_k \left(\alpha^{\dag}_{k\uparrow} \alpha_{k\uparrow}+\alpha^{\dag}_{-k\downarrow}\alpha_{-k\downarrow}\right)+E_{s}(0),
+	\end{eqnarray}
+	其中$E_s (0) =2\sum_k \varepsilon_k v_k^2-2\Delta\sum_k u_kv_k+\frac{\Delta^2}{V_0}$。
+
+	\subsection{南部表示与格林函数}
+	南部表示是二次量子化方法中常用的一种表示方法，该表示下，上述的BdG方程可以整理为很简洁的矩阵形式。依然以BCS超导哈密顿量
+	为例，如下所示:
+	\begin{align}
+		\mathbf{H}=&\sum_{k}\varepsilon_{k}(C^{\dag}_{k \uparrow} C_{k \uparrow}+C^{\dag}_{-k \downarrow} C_{-k \downarrow})-
+		\sum_{k}\Delta(C^{\dag}_{k \uparrow}C^{\dag}_{-k \downarrow}+C_{-k \downarrow}C_{k \uparrow})+\frac{\Delta^2}{V_0}\nonumber\\
+		=&\sum_{k}\left[C^{\dag}_{k\uparrow},C_{-k\downarrow}\right]
+		\left[
+			\begin{matrix}
+				\varepsilon_k & -\Delta\\
+				-\Delta & -\varepsilon_k
+			\end{matrix}
+		\right]
+		\left[
+			\begin{matrix}
+				C_{k\uparrow}\\
+				C^{\dag}_{-k\downarrow}
+			\end{matrix}
+		\right]
+		+\sum_k \varepsilon_k+\frac{\Delta^2}{V_0},
+	\end{align}
+	定义$\hat{\psi}^{\dag}_k=[C^{\dag}_{k\uparrow},C_{-k\downarrow}]$，
+	则有$H=\sum_k \hat{\psi}^{\dag}_k \hat{H}_k \hat{\psi}_k+\sum_k \varepsilon_k+\frac{\Delta^2}{V_0}$。
+
+	南部表示下，时域的松原格林函数为：
+	\begin{eqnarray}
+		\hat{G}\left(k,\tau \right)=-\langle T_\tau \hat{\psi}_k(\tau)\hat{\psi}^{\dag}_0 \left(0\right)\rangle,
+	\end{eqnarray}
+	可以由离散傅里叶变换转到频域的格林函数：
+	\begin{eqnarray}
+		\hat{G}(\mathbf{k},\tau)=\frac{1}{\beta}\sum_n e^{-i\omega_n \tau} \hat{G}(\mathbf{k},i\omega_n),
+	\end{eqnarray}
+	其中$\omega_n=(2n+1)\pi/\beta$，是费米子的松原频率。
 
 
 
